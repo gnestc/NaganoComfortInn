@@ -1,0 +1,17 @@
+%h1 Liste des clients
+%table
+  %thread
+    %tr
+      %th Prénom
+      %th Nom
+      %th{:colspan => "3"} Actions
+  %tbody
+    - @customers.each do |customer|
+      %tr
+        %td= customer.first_name
+        %td= customer.last_name
+        %td= link_to 'Voir', customer_path(customer)
+        %td= link_to 'Modifier', edit_customer_path(customer)
+        %td= link_to 'Supprimer', customer_path(customer), method: :delete
+%p
+  = link_to 'Inscrire un nouveau client', new_customer_path

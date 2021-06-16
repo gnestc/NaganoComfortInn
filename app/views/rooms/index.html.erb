@@ -1,0 +1,24 @@
+<h1>Liste des chambres</h1>
+<table>
+  <thread>
+    <tr>
+      <th>Numéro</th>
+      <th>Disponibilité</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thread>
+  <tbody>
+  <% @rooms.each do |room| %>
+    <tr>
+      <td><%= room.id %></td>
+      <td><%= room.is_available %></td>
+      <td><%= link_to 'Voir', room_path(room) %></td>
+      <td><%= link_to 'Modifier', edit_room_path(room) %></td>
+      <td><%= link_to 'Supprimer', room_path(room), method: :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<p>
+  <%= link_to 'Ajouter une nouvelle chambre', new_room_path %>
+</p>
