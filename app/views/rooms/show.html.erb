@@ -1,0 +1,8 @@
+<h1>Showing!</h1>
+<p>Numéro de la chambre: <%= @room.id %></p>
+<p>Disponibilité: <%= @room.is_available %></p>
+<p>Type de vue: <%= @room.view_id %></p>
+<p>Type de chambre: <%= @room.room_type_id %></p>
+<p>
+  <%= link_to 'Retour', rooms_path %>
+</p>

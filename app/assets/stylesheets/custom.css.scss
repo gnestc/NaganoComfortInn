@@ -1,0 +1,21 @@
+
+/* Sticky Footer Classes */
+
+html,
+body {
+  height: 100%;
+}
+
+#page-content {
+  flex: 1 0 auto;
+}
+
+#sticky-footer {
+  background-color: #2f313e;
+  flex-shrink: none;
+}
+
+#navbar {
+  background-color: #2f313e;
+}
+

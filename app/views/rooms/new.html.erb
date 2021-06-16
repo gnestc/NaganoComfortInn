@@ -1,0 +1,31 @@
+<h1>Ajout d'une nouvelle chambre</h1>
+
+<%= form_for :room, url: rooms_path do |f| %>
+
+  <p>
+    <%= f.label :id %><br/>
+    <%= f.text_field :id %>
+  </p>
+
+  <p>
+    <%= f.label :is_available %><br/>
+    <%= f.text_field :is_available %>
+  </p>
+
+  <p>
+    <%= f.label :view_id %><br/>
+    <%= f.text_field :view_id %>
+  </p>
+
+  <p>
+    <%= f.label :room_type_id %><br/>
+    <%= f.text_field :room_type_id %>
+  </p>
+
+  <p>
+    <%= f.submit %><br/>
+  </p>
+
+<% end %>
+
+<%= link_to 'Retour', rooms_path %>
