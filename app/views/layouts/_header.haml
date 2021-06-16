@@ -1,0 +1,28 @@
+%nav#navbar.navbar.navbar-expand-lg.navbar-dark
+  = link_to image_tag('nagano-logo.jpg'), root_path, class: "navbar-brand"
+  %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    %ul.navbar-nav.mr-auto
+      %li.nav-item.dropdown
+        %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          Espace Client
+        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+          %a.dropdown-item{:href => "#"} Réserver une chambre
+          %a.dropdown-item{:href => "#"} Mes réservations
+          .dropdown-divider
+          %a.dropdown-item{:href => "#"} M'inscrire
+      %li.nav-item.dropdown
+        %a#navbarDropdown2.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          Espace Gestion
+        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+          = link_to "Modifier des comptes client", customers_path, class: "dropdown-item"
+          %a.dropdown-item{:href => "#"} Modifier des réservation
+          = link_to "Modifier les chambres", rooms_path, class: "dropdown-item"
+          %a.dropdown-item{:href => "#"} Modifier les prix
+          %a.dropdown-item{:href => "#"} Prévoir des changements de prix
+          .dropdown-divider
+          %a.dropdown-item{:href => "#"} Rapports journaliers
+    %form.form-inline.my-2.my-lg-0
+      %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Date", :type => "search"}/
+      %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search
