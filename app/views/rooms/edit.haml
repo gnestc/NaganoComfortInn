@@ -1,0 +1,23 @@
+%h1 Modification d'une chambre
+= form_for(@room) do |f|
+  %p
+    = f.label :id, 'Numéro de la chambre'
+    %br/
+    = f.text_field :id
+  %p
+    = f.label :is_available, 'Disponibilité'
+    %br/
+    = f.text_field :is_available
+  %p
+    = f.label :view_id, 'Type de vue'
+    %br/
+    = f.text_field :view_id
+  %p
+    = f.label :room_type_id, 'Type de chambre'
+    %br/
+    = f.text_field :room_type_id
+  %p
+    = f.submit
+    %br/
+%p
+  = link_to 'Retour', rooms_path

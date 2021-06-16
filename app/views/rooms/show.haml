@@ -1,0 +1,11 @@
+%h1 Showing!
+%p
+  Numéro de la chambre: #{@room.id}
+%p
+  Disponibilité: #{@room.is_available}
+%p
+  Type de vue: #{@room.view_id}
+%p
+  Type de chambre: #{@room.room_type_id}
+%p
+  = link_to 'Retour', rooms_path
