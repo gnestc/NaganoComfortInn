@@ -1,10 +1,11 @@
-class ViewsController < ApplicationController
+class ChangePricesController < ApplicationController
   def show
 
   end
 
   def index
-
+    @views = View.all
+    @room_types = RoomType.all
   end
 
   def new

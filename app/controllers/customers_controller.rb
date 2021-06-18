@@ -30,6 +30,10 @@ class CustomersController < ApplicationController
   def destroy
     @customer = Customer.find(params[:id])
     @customer.destroy
-    redirect_to customers_path
+    respond_to do |format|
+      format.html { redirect_to customers_url }
+      format.json
+      format.js { render layout: false }
+    end
   end
 end
