@@ -8,7 +8,11 @@ class CustomersController < ApplicationController
   end
 
   def new
-
+    respond_to do |format|
+      format.html { redirect_to customers_url }
+      format.json
+      format.js { render layout: false }
+    end
   end
 
   def edit
@@ -18,7 +22,12 @@ class CustomersController < ApplicationController
   def create
     @customer = Customer.new(params[:customer])
     @customer.save
-    redirect_to customer_path(@customer)
+    respond_to do |format|
+      format.js
+      format.html { redirect_to customers_url }
+      format.json
+    end
+    #redirect_to customer_path(@customer)
   end
 
   def update
