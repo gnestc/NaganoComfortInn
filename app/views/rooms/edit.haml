@@ -3,19 +3,24 @@
   %p
     = f.label :id, 'Numéro de la chambre'
     %br/
-    = f.text_field :id
+    = f.text_field :number
   %p
-    = f.label :is_available, 'Disponibilité'
+    = f.label :is_available, "Disponibilité"
     %br/
-    = f.text_field :is_available
+    = f.radio_button :is_available, true
+    = f.label :is_available, 'Disponible', :value => true
+    %br/
+    = f.radio_button :is_available, false
+    = f.label :is_available, 'Non disponible', :value => false
   %p
-    = f.label :view_id, 'Type de vue'
+    = f.label :view_id, "Type de vue"
     %br/
-    = f.text_field :view_id
+    = f.select :view_id, options_for_select([["Vue sur le stationnement", 1], ["Vue sur la mer", 2]], @room.view_id)
   %p
-    = f.label :room_type_id, 'Type de chambre'
+    = f.label :room_type_id, "Type de chambre"
     %br/
-    = f.text_field :room_type_id
+    = f.select :room_type_id, options_for_select([["Chambre simple lit", 1], ["Chambre double lit", 2], ["Chambre exécutive", 3], ["Suite présidentielle", 4]], @room.room_type_id)
+
   %p
     = f.submit
     %br/

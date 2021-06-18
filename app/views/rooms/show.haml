@@ -1,8 +1,8 @@
 %h1 Showing!
 %p
-  Numéro de la chambre: #{@room.id}
+  Numéro de la chambre: #{@room.number}
 %p
-  Disponibilité: #{@room.is_available}
+  Disponibilité: #{@room.is_available ? "Disponible" : "Non disponible"}
 %p
   Type de vue: #{@room.view_id}
 %p

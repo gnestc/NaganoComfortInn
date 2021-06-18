@@ -1,21 +1,25 @@
 %h1 Ajout d'une nouvelle chambre
 = form_for :room, url: rooms_path do |f|
   %p
-    = f.label :id
+    = f.label :number, "Numéro de la chambre"
     %br/
-    = f.text_field :id
+    = f.text_field :number
   %p
-    = f.label :is_available
+    = f.label :is_available, "Disponibilité"
     %br/
-    = f.text_field :is_available
+    = f.radio_button :is_available, true
+    = f.label :is_available, 'Disponible', :value => true
+    %br/
+    = f.radio_button :is_available, false
+    = f.label :is_available, 'Non disponible', :value => false
   %p
-    = f.label :view_id
+    = f.label :view_id, "Type de vue"
     %br/
-    = f.text_field :view_id
+    = f.select :view_id, options_for_select([["Sélectionnez une vue"], ["Vue sur le stationnement", 1], ["Vue sur la mer", 2]]), :disabled => ["Sélectionnez une vue"]
   %p
-    = f.label :room_type_id
+    = f.label :room_type_id, "Type de chambre"
     %br/
-    = f.text_field :room_type_id
+    = f.select :room_type_id, options_for_select([["Sélectionnez un type"], ["Chambre simple lit", 1], ["Chambre double lit", 2], ["Chambre exécutive", 3], ["Suite présidentielle", 4]]), :disabled => ["Sélectionnez un type"]
   %p
     = f.submit
     %br/
