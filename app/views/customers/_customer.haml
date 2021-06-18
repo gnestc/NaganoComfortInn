@@ -1,0 +1,6 @@
+%tr{class: "customer_id_#{customer.id}"}
+  %td= customer.first_name
+  %td= customer.last_name
+  %td= link_to 'Voir', customer_path(customer)
+  %td= link_to 'Modifier', edit_customer_path(customer)
+  %td= link_to 'Supprimer', customer, method: :delete, remote: true
