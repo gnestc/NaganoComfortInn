@@ -36,6 +36,8 @@ gem 'autoprefixer-rails'
 
 gem 'jquery-ui-rails'
 
+gem 'pry-debugger'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
