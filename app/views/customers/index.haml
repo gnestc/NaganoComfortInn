@@ -12,6 +12,14 @@
         %td= customer.last_name
         %td= link_to 'Voir', customer_path(customer)
         %td= link_to 'Modifier', edit_customer_path(customer)
-        %td= link_to 'Supprimer', customer_path(customer), method: :delete
-%p
+        %td= link_to 'Supprimer', customer, method: :delete, remote: true, class: "delete"
+%div#newCustomer
   = link_to 'Inscrire un nouveau client', new_customer_path
+%div#test2
+
+:javascript
+  $(document).ready(function(){
+    $( ".delete" ).bind( 'click', function() {
+      $(this).closest('tr').fadeOut();
+    });
+  });

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20210610134418) do
+ActiveRecord::Schema.define(:version => 20210615181950) do
 
   create_table "by_day_of_week_prices", :force => true do |t|
     t.string  "day_desc"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(:version => 20210610134418) do
     t.decimal "total_daily_income"
   end
 
-  create_table "rooms", :force => true do |t|
+  create_table "reservations", :force => true do |t|
     t.integer "customer_id"
     t.date    "start_date"
     t.date    "end_date"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20210610134418) do
     t.boolean "is_available"
     t.integer "view_id"
     t.integer "room_type_id"
+    t.integer "number"
   end
 
   create_table "views", :force => true do |t|

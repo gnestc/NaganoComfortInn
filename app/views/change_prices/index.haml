@@ -1,0 +1,17 @@
+%h1 Prix en fonction de la vue
+%table
+  %thread
+    %tr
+      %th Vue
+      %th Variation du prix
+      %th Prix fixe
+      %th{:colspan => "3"} Actions
+  %tbody
+    - @views.each do |view|
+      %tr
+        %td= view.first_name
+        %td= view.last_name
+        %td= link_to 'Modifier', view_customer_path(view)
+        %td= link_to 'Supprimer', view_path(view), method: :delete
+%p
+  = link_to 'Inscrire un nouveau client', new_customer_path
