@@ -15,12 +15,11 @@
   %p
     = f.label :view_id, "Type de vue"
     %br/
-    = f.select :view_id, options_for_select([["Vue sur le stationnement", 1], ["Vue sur la mer", 2]], @room.view_id)
+    = f.select :view_id, options_for_select(@views.map{|v| [v.view_desc, v.id]}, @room.view_id)
   %p
     = f.label :room_type_id, "Type de chambre"
     %br/
-    = f.select :room_type_id, options_for_select([["Chambre simple lit", 1], ["Chambre double lit", 2], ["Chambre exécutive", 3], ["Suite présidentielle", 4]], @room.room_type_id)
-
+    = f.select :room_type_id, options_for_select(@room_types.map{|t| [t.type_desc, t.id]}, @room.room_type_id)
   %p
     = f.submit
     %br/

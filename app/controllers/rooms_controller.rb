@@ -8,11 +8,14 @@ class RoomsController < ApplicationController
   end
 
   def new
-
+    @views = View.all
+    @room_types = RoomType.all
   end
 
   def edit
     @room = Room.find(params[:id])
+    @views = View.all
+    @room_types = RoomType.all
   end
 
   def create

@@ -17,9 +17,9 @@
           Espace Gestion
         .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
           = link_to "Modifier des comptes client", customers_path, class: "dropdown-item"
-          %a.dropdown-item{:href => "#"} Modifier des réservation
+          = link_to "Modifier les réservations", reservations_path, class: "dropdown-item"
           = link_to "Modifier les chambres", rooms_path, class: "dropdown-item"
-          %a.dropdown-item{:href => "#"} Modifier les prix
+          = link_to "Modifier les prix", change_prices_path, class: "dropdown-item"
           %a.dropdown-item{:href => "#"} Prévoir des changements de prix
           .dropdown-divider
           %a.dropdown-item{:href => "#"} Rapports journaliers

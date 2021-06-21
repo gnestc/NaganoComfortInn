@@ -15,11 +15,11 @@
   %p
     = f.label :view_id, "Type de vue"
     %br/
-    = f.select :view_id, options_for_select([["Sélectionnez une vue"], ["Vue sur le stationnement", 1], ["Vue sur la mer", 2]]), :disabled => ["Sélectionnez une vue"]
+    = f.select :view_id, @views.map{|v| [v.view_desc, v.id]}, :include_blank => "Selectionnez une vue"
   %p
     = f.label :room_type_id, "Type de chambre"
     %br/
-    = f.select :room_type_id, options_for_select([["Sélectionnez un type"], ["Chambre simple lit", 1], ["Chambre double lit", 2], ["Chambre exécutive", 3], ["Suite présidentielle", 4]]), :disabled => ["Sélectionnez un type"]
+    = f.select :room_type_id, @room_types.map{|t| [t.type_desc, t.id]}, :include_blank => "Selectionnez un type"
   %p
     = f.submit
     %br/
