@@ -4,4 +4,6 @@ class Room < ActiveRecord::Base
   has_many :reservations, through: :reservations_rooms
   has_many :room_services
   has_many :invoice_details, as: :owner
+  belongs_to :room_type
+  belongs_to :view
 end

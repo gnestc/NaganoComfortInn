@@ -1,0 +1,16 @@
+%h1 Nouvelle réservation
+= form_for :reservation, url: reservations_path do |f|
+  %p
+    = f.label :customer_id
+    %br/
+    = f.select :customer_id, @customers.map{|c| [c.first_name + " " + c.last_name, c.id]}, :include_blank => "Selectionnez un client"
+
+  = fields_for :reservations_rooms do |s|
+    = s.label :room_id
+    %br/
+    = s.select :room_id, @rooms.map{|r| [r.number, r.id]}, :include_blank => "Sélectionnez une chambre"
+
+  %p
+    = f.submit
+    %br/
+= link_to 'Retour', reservations_path
