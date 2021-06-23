@@ -1,3 +1,5 @@
+require 'date'
+
 class ReservationsController < ApplicationController
   def show
     @reservation = Reservation.find(params[:id])
@@ -10,23 +12,28 @@ class ReservationsController < ApplicationController
   def new
     @customers = Customer.all
     @rooms = Room.all
+    @views = View.all
+    @room_types = RoomType.all
   end
 
   def edit
     @reservation = Reservation.find(params[:id])
     @customers = Customer.all
+    @rooms = Room.all
   end
 
   def create
     @reservation = Reservation.new(params[:reservation])
-    @reservation.reservations_rooms.build
     @reservation.save
+    @reservations_room = ReservationsRoom.new(reservation_id: @reservation.id, room_id: params[:reservations_rooms][:room_id])
+    @reservations_room.save
     redirect_to reservation_path(@reservation)
   end
 
   def update
     @reservation = Reservation.find(params[:id])
     @reservation.update_attributes(params[:reservation])
+    @reservations_room = ReservationsRoom.find(params[:room_id])
     redirect_to @reservation
   end
 
@@ -34,5 +41,26 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find(params[:id])
     @reservation.destroy
     redirect_to reservations_path
+  end
+
+  def search
+    @rooms = Room.all
+
+  end
+
+  def results
+    @rooms = Room.all
+    @customers = Customer.all
+    @views = View.all
+    @room_types = RoomType.all
+
+    #endDate = Date.new(params[:reservation]['end_date(1i)'].to_i, params[:reservation]['end_date(2i)'].to_i, params[:reservation]['end_date(3i)'].to_i)
+    #startDate = Date.new(params[:reservation]['start_date(1i)'].to_i, params[:reservation]['start_date(2i)'].to_i, params[:reservation]['start_date(3i)'].to_i)
+
+    @results = Room.where("rooms.id NOT IN (SELECT reservations_rooms.room_id FROM reservations_rooms)")
+    resultsByDate = Room.joins(:reservations_rooms, reservations_rooms: :reservation)\
+      .where("reservations.end_date < ? OR reservations.end_date IS NULL", params[:reservation][:start_date])\
+      .where("reservations.start_date > ? OR reservations.start_date IS NULL", params[:reservation][:end_date])
+    @results += resultsByDate
   end
 end

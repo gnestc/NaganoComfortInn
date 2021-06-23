@@ -1,0 +1,15 @@
+%h1 Recherche par date
+
+= form_for :reservation, url: searchInput_path do |f|
+  %p
+    = f.label :start_date
+    %br/
+    = f.text_field :start_date, class: 'datepicker'
+  %p
+    = f.label :end_date
+    %br/
+    = f.text_field :end_date, class: 'datepicker'
+  %p
+    = f.submit "Rechercher"
+    %br/
+= link_to 'Retour', reservations_path

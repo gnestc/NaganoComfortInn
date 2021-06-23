@@ -3,8 +3,9 @@
   Nom du client: #{@reservation.customer.first_name + " " + @reservation.customer.last_name}
 
 %p
-  Numéro de la chambre: #{@reservation.room.number}
-
+  Chambres réservées:
+  - @reservation.reservations_rooms.each do |r|
+    = r.room.number.to_s + "; "
 
 %p
   = link_to 'Retour', reservations_path
