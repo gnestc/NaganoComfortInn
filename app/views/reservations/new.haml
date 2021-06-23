@@ -1,14 +1,31 @@
 %h1 Nouvelle réservation
-= form_for :reservation, url: reservations_path do |f|
+
+= form_for :reservation, url: reservation_path do |f|
   %p
     = f.label :customer_id
     %br/
     = f.select :customer_id, @customers.map{|c| [c.first_name + " " + c.last_name, c.id]}, :include_blank => "Selectionnez un client"
 
-  = fields_for :reservations_rooms do |s|
-    = s.label :room_id
+  %p
+    = f.label :guests
     %br/
-    = s.select :room_id, @rooms.map{|r| [r.number, r.id]}, :include_blank => "Sélectionnez une chambre"
+    = f.text_field :guests
+  %p
+    = f.label :start_date
+    %br/
+    = f.date_select :start_date, :order => [:day, :month, :year]
+  %p
+    = f.label :end_date
+    %br/
+    = f.date_select :end_date, :order => [:day, :month, :year]
+  %p
+    = f.label :view_id
+    %br/
+    = f.select :view_id, @views.map{|r| [r.view_desc, r.id]}, :include_blank => "Sélectionnez un type de vue"
+  %p
+    = f.label :room_type_id
+    %br/
+    = f.select :room_type_id, @room_types.map{|r| [r.type_desc, r.id]}, :include_blank => "Sélectionnez un type de chambre"
 
   %p
     = f.submit
