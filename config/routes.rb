@@ -16,6 +16,5 @@ NaganoComfortInn::Application.routes.draw do
 
   resources :change_prices
   get 'search', to:'reservations#search'
-  get 'results', to:'reservations#results'
-  post "searchInput", to:'reservations#results'
+  get "searchInput", to:'reservations#results'
 end

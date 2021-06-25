@@ -1,6 +1,6 @@
 %h1 Recherche par date
 
-= form_for :reservation, url: searchInput_path do |f|
+= form_for :reservation, method: 'get', url: searchInput_path do |f|
   %p
     = f.label :start_date
     %br/

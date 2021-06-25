@@ -45,7 +45,6 @@ class ReservationsController < ApplicationController
 
   def search
     @rooms = Room.all
-
   end
 
   def results
@@ -54,13 +53,15 @@ class ReservationsController < ApplicationController
     @views = View.all
     @room_types = RoomType.all
 
-    #endDate = Date.new(params[:reservation]['end_date(1i)'].to_i, params[:reservation]['end_date(2i)'].to_i, params[:reservation]['end_date(3i)'].to_i)
-    #startDate = Date.new(params[:reservation]['start_date(1i)'].to_i, params[:reservation]['start_date(2i)'].to_i, params[:reservation]['start_date(3i)'].to_i)
+    if(params.has_key?(:view_id))
+      @test = "Hola"
+    end
 
     @results = Room.where("rooms.id NOT IN (SELECT reservations_rooms.room_id FROM reservations_rooms)")
-    resultsByDate = Room.joins(:reservations_rooms, reservations_rooms: :reservation)\
-      .where("reservations.end_date < ? OR reservations.end_date IS NULL", params[:reservation][:start_date])\
-      .where("reservations.start_date > ? OR reservations.start_date IS NULL", params[:reservation][:end_date])
-    @results += resultsByDate
+    @results += Room.joins(:reservations_rooms, reservations_rooms: :reservation)\
+      .where("reservations.end_date < ? OR reservations.end_date IS NULL", params[:start_date])\
+      .where("reservations.start_date > ? OR reservations.start_date IS NULL", params[:end_date])
+    @results = @results.where(view_id: params[:view_id]) if(params.has_key?(:view_id))
+    @results = @results.where(room_type_id: params[:room_type_id]) if(params.has_key?(:room_type_id))
   end
 end
