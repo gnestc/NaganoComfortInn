@@ -1,10 +1,9 @@
 %h2 Résultats
 %div
-  = params.inspect
-%div
-  = @test
+  //= params.inspect
+  //= @rooms.inspect
 %nav.navbar.navbar-light.bg-light
-  = form_for :reservation, method: 'get', :html => {:class => 'form-inline'}, url: searchInput_url do |f|
+  = form_for :reservation, method: 'get', :html => {:class => 'form-inline'}, url: searchInput_path do |f|
     %div.bar-element
       = f.label :start_date, "Arrivée"
     %div.bar-element
@@ -33,7 +32,7 @@
     %div.bar-element
       = f.submit "Rechercher", :html => {:class => 'btn.btn-outline-success.my-2.my-sm-0'}
 %p
-  - @results.each do |r|
+  - @rooms.each do |r|
     .card.flex-row
       .card-header.border-0
         = image_tag 'Room101.jpg', class: 'img-room'
