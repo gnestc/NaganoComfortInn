@@ -1,0 +1,56 @@
+%h2 Résultats
+%div
+  //= params.inspect
+  //= @rooms.inspect
+%nav.navbar.navbar-light.bg-light
+  = form_for :reservation, method: 'get', :html => {:class => 'form-inline'}, url: searchInput_path do |f|
+    %div.bar-element
+      = f.label :start_date, "Arrivée"
+    %div.bar-element
+      = f.text_field :start_date, class: 'datepicker', value: params[:reservation][:start_date]
+    %div.bar-element
+      = f.label :end_date, "Départ"
+    %div.bar-element
+      = f.text_field :end_date, class: 'datepicker', value: params[:reservation][:end_date]
+
+    %div.bar-element
+      = f.label :guests, "Personnes"
+    %div.bar-element
+      = f.text_field :guests, :style=>"width: 50px; height: 29px;"
+    %div.bar-element
+      = f.label :view_id, "Vue"
+    %div.bar-element
+      = f.select :view_id, @views.map{|r| [r.view_desc, r.id]}, :include_blank => "Choisir"
+    %div.bar-element
+      = f.label :room_type_id, "Type de chambre"
+    %div.bar-element
+      = f.select :room_type_id, @room_types.map{|r| [r.type_desc, r.id]}, :include_blank => "Choisir"
+    %div.bar-element
+      = f.label :contigues, "Contiguïté"
+    %div.bar-element
+      = f.check_box :contigues, :style=>"width: 20px; height: 20px;"
+    %div.bar-element
+      = f.submit "Rechercher", :html => {:class => 'btn.btn-outline-success.my-2.my-sm-0'}
+%p
+  - @rooms.each do |r|
+    .card.flex-row
+      .card-header.border-0
+        = image_tag 'Room101.jpg', class: 'img-room'
+      .card-block.px-2
+        .card-body
+          %h5.card-title
+            =r.room_type.type_desc
+          %p.card-text
+            %div{:class => r.is_available ? 'available' : 'booked'}
+              =r.is_available ? "Disponible" : "Non disponible"
+        %ul.list-group.list-group-flush
+          %li.list-group-item
+            =r.number
+          %li.list-group-item
+            =r.view.view_desc
+          %li.list-group-item
+            %div.price
+              100$
+        .card-body
+          %a.card-link{:href => "#"} Réserver
+          %a.card-link{:href => "#"} Détails

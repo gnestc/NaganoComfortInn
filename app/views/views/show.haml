@@ -1,0 +1,10 @@
+%h1 Showing!
+%p
+  Type de vue: #{@view.view_desc}
+%p
+  Prix fixe: #{@view.view_fixed_price}
+%p
+  Variation du prix: #{@view.view_percent_variation}
+
+%p
+  = link_to 'Retour', change_prices_path

@@ -1,0 +1,17 @@
+%h1 Liste des réservations
+%table
+  %thread
+    %tr
+      %th Numéro de réservation
+      %th Nom du client
+      %th{:colspan => "3"} Actions
+  %tbody
+    - @reservations.each do |reservation|
+      %tr
+        %td= reservation.id
+        %td= reservation.customer.first_name + " " + reservation.customer.last_name
+        %td= link_to 'Voir', reservation_path(reservation)
+        %td= link_to 'Modifier', edit_reservation_path(reservation)
+        %td= link_to 'Supprimer', reservation_path(reservation), method: :delete
+%p
+  = link_to 'Nouvelle recherche', search_path
