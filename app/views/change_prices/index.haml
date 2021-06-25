@@ -1,4 +1,4 @@
-%h1 Prix en fonction de la vue
+%h2 Prix en fonction de la vue
 %table
   %thread
     %tr
@@ -9,9 +9,31 @@
   %tbody
     - @views.each do |view|
       %tr
-        %td= view.first_name
-        %td= view.last_name
-        %td= link_to 'Modifier', view_customer_path(view)
+        %td= view.view_desc
+        %td= view.view_percent_variation
+        %td= number_with_precision(view.view_fixed_price, precision: 2)
+        %td= link_to 'Voir', view_path(view)
+        %td= link_to 'Modifier', edit_view_path(view)
         %td= link_to 'Supprimer', view_path(view), method: :delete
 %p
-  = link_to 'Inscrire un nouveau client', new_customer_path
+  = link_to 'Entrer une nouvelle vue', new_view_path
+
+%h2 Prix en fonction du type de chambre
+%table
+  %thread
+    %tr
+      %th Type
+      %th Variation du prix
+      %th Prix fixe
+      %th{:colspan => "3"} Actions
+  %tbody
+    - @room_types.each do |room_type|
+      %tr
+        %td= room_type.type_desc
+        %td= room_type.type_percent_variation
+        %td= number_with_precision(room_type.type_fixed_price, precision: 2)
+        %td= link_to 'Voir', room_type_path(room_type)
+        %td= link_to 'Modifier', edit_room_type_path(room_type)
+        %td= link_to 'Supprimer', room_type_path(room_type), method: :delete
+%p
+  = link_to 'Entrer un nouveau type de chambre', new_room_type_path

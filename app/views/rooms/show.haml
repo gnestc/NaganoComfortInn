@@ -4,8 +4,8 @@
 %p
   Disponibilité: #{@room.is_available ? "Disponible" : "Non disponible"}
 %p
-  Type de vue: #{@room.view_id}
+  Type de vue: #{@room.view.view_desc}
 %p
-  Type de chambre: #{@room.room_type_id}
+  Type de chambre: #{@room.room_type.type_desc}
 %p
   = link_to 'Retour', rooms_path

@@ -12,5 +12,9 @@ NaganoComfortInn::Application.routes.draw do
   resources :room_services
   resources :room_types
   resources :rooms
+  resources :views
+
   resources :change_prices
+  get 'search', to:'reservations#search'
+  get "searchInput", to:'reservations#results'
 end

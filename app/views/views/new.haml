@@ -1,0 +1,18 @@
+%h1 Nouvelle vue
+= form_for :view, url: views_path do |f|
+  %p
+    = f.label :view_desc
+    %br/
+    = f.text_field :view_desc
+  %p
+    = f.label :view_fixed_price
+    %br/
+    = f.text_field :view_fixed_price
+  %p
+    = f.label :view_percent_variation
+    %br/
+    = f.text_field :view_percent_variation
+  %p
+    = f.submit
+    %br/
+= link_to 'Retour', change_prices_path

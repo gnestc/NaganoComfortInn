@@ -1,3 +1,29 @@
+<% unless @customer.persisted? %>
+  //document.querySelector('#deletion_msg').fadeIn();
+  let node = document.createElement("li");
+  let textnode = document.createTextNode("Client supprimé!");
+  node.appendChild(textnode);
+  document.querySelector('#deletion_msg').appendChild(node);
 
-document.querySelector('#test2').innerHTML = "Paragraph changed!";
+  let customer_id = '<%= @customer.id %>';
+    $('.customer_id_' + customer_id).fadeOut();
 
+  //FadeOut
+  let fadeTarget = document.querySelector("#deletion_msg").lastChild
+  let val = 1;
+  let time = setInterval(function () {
+      if (val > 0) {
+          val -= 0.05;
+          fadeTarget.style.opacity = String(val);
+      }
+      else {
+          clearInterval(time);
+      }
+  }, 50);
+
+  setTimeout(()=>{
+      let list = document.querySelector("#deletion_msg");
+      list.removeChild(list.childNodes[0]);
+  }, 1500)
+
+<% end %>
