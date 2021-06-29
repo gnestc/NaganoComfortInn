@@ -1,0 +1,18 @@
+%h1 Nouveau type de chambre
+= form_for :room_type, url: admin_room_types_path do |f|
+  %p
+    = f.label :type_desc
+    %br/
+    = f.text_field :type_desc
+  %p
+    = f.label :type_fixed_price
+    %br/
+    = f.text_field :type_fixed_price
+  %p
+    = f.label :type_percent_variation
+    %br/
+    = f.text_field :type_percent_variation
+  %p
+    = f.submit
+    %br/
+= link_to 'Retour', admin_change_prices_path

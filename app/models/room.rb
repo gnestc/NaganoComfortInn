@@ -13,4 +13,5 @@ class Room < ActiveRecord::Base
   scope :never_reserved, -> { where("id NOT IN (SELECT reservations_rooms.room_id FROM reservations_rooms)") }
   scope :by_view, ->(view_id) { where(view_id: view_id) if view_id.present? }
   scope :by_type, ->(type_id) { where(room_type_id: type_id) if type_id.present? }
+  scope :not_deleted, -> { where(deleted_at: nil) }
 end
