@@ -1,0 +1,29 @@
+%h1 Nouvelle réservation
+
+= form_for :reservation do |f|
+
+  %p
+    = f.label :start_date, "Arrivée"
+    %br/
+    = f.label :start_date, params[:start_date]
+  %p
+    = f.label :end_date, "Départ"
+    %br/
+    = f.label :end_date, params[:end_date]
+  %p
+    = f.label :view_id, "Vue de la chambre"
+    %br/
+    = f.label :view_desc, @room.view.view_desc
+  %p
+    = f.label :room_type_id, "Type de chambre"
+    %br/
+    = f.label :room_type_id, @room.room_type.type_desc
+  %p
+    = f.label :email, "Courriel lié au compte"
+    %br/
+    = f.text_field :email
+
+  %p
+    = f.submit
+    %br/
+= link_to 'Retour', results_path

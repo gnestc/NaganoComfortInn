@@ -1,0 +1,14 @@
+%h1 Liste des clients
+%table
+  %thread
+    %tr
+      %th Prénom
+      %th Nom
+      %th{:colspan => "3"} Actions
+  %tbody#customersBody
+    =render @customers
+%div#newCustomer
+%div#newCustomerLink
+  = link_to 'Inscrire un nouveau client', new_admin_customer_path, remote: true
+%ul#deletion_msg
+

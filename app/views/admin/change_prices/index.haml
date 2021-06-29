@@ -1,0 +1,39 @@
+%h2 Prix en fonction de la vue
+%table
+  %thread
+    %tr
+      %th Vue
+      %th Variation du prix
+      %th Prix fixe
+      %th{:colspan => "3"} Actions
+  %tbody
+    - @views.each do |view|
+      %tr
+        %td= view.view_desc
+        %td= view.view_percent_variation
+        %td= number_with_precision(view.view_fixed_price, precision: 2)
+        %td= link_to 'Voir', admin_view_path(view)
+        %td= link_to 'Modifier', edit_admin_view_path(view)
+        %td= link_to 'Supprimer', admin_view_path(view), method: :delete
+%p
+  = link_to 'Entrer une nouvelle vue', new_admin_view_path
+
+%h2 Prix en fonction du type de chambre
+%table
+  %thread
+    %tr
+      %th Type
+      %th Variation du prix
+      %th Prix fixe
+      %th{:colspan => "3"} Actions
+  %tbody
+    - @room_types.each do |room_type|
+      %tr
+        %td= room_type.type_desc
+        %td= room_type.type_percent_variation
+        %td= number_with_precision(room_type.type_fixed_price, precision: 2)
+        %td= link_to 'Voir', admin_room_type_path(room_type)
+        %td= link_to 'Modifier', edit_admin_room_type_path(room_type)
+        %td= link_to 'Supprimer', admin_room_type_path(room_type), method: :delete
+%p
+  = link_to 'Entrer un nouveau type de chambre', new_admin_room_type_path

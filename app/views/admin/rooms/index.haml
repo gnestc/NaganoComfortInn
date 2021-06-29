@@ -1,0 +1,17 @@
+%h1 Liste des chambres
+%table
+  %thread
+    %tr
+      %th Numéro de chambre
+      %th Disponibilité
+      %th{:colspan => "3"} Actions
+  %tbody
+    - @rooms.each do |room|
+      %tr
+        %td= room.number
+        %td= room.is_available ? "Disponible" : "Non disponible"
+        %td= link_to 'Voir', admin_room_path(room)
+        %td= link_to 'Modifier', edit_admin_room_path(room)
+        %td= link_to 'Supprimer', admin_room_path(room), method: :delete
+%p
+  = link_to 'Ajouter une nouvelle chambre', new_admin_room_path
