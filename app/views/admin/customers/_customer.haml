@@ -1,6 +1,7 @@
 %tr{class: "customer_id_#{customer.id}"}
   %td= customer.first_name
   %td= customer.last_name
+  %td= customer.phone
   %td= customer.email
   %td= link_to 'Voir', admin_customer_path(customer)
   %td= link_to 'Modifier', edit_admin_customer_path(customer)

@@ -1,18 +1,25 @@
 %div#newForm
   = form_for(:customer, url: admin_customers_path) do |f|
     %p
-      = f.label :first_name
+      = f.label :first_name, "Prénom"
       %br/
       = f.text_field :first_name
     %p
-      = f.label :last_name
+      = f.label :last_name, "Nom"
       %br/
       = f.text_field :last_name
     %p
-      = f.label :email
+      = f.label :phone, "Téléphone"
+      %br/
+      = f.text_field :phone
+    %p
+      = f.label :email, "Courriel"
       %br/
       = f.text_field :email
-
+    %p
+      = f.label :credit_card_num, "Numéro de carte de crédit"
+      %br/
+      = f.text_field :credit_card_num
     %p
       = f.submit
       %br/
