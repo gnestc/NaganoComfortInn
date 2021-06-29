@@ -1,0 +1,11 @@
+%h1 Showing!
+%p
+  Numéro de la chambre: #{@room.number}
+%p
+  Disponibilité: #{@room.is_available ? "Disponible" : "Non disponible"}
+%p
+  Type de vue: #{@room.view.view_desc}
+%p
+  Type de chambre: #{@room.room_type.type_desc}
+%p
+  = link_to 'Retour', admin_rooms_path

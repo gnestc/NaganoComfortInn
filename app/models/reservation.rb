@@ -5,4 +5,6 @@ class Reservation < ActiveRecord::Base
   has_many :invoices
   belongs_to :customer
   accepts_nested_attributes_for :rooms
+
+  scope :not_deleted, -> { where(deleted_at: nil) }
 end

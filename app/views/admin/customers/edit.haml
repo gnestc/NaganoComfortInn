@@ -1,0 +1,19 @@
+%h1 Modification d'un client
+= form_for(@customer, url: admin_customer_path) do |f|
+  %p
+    = f.label :first_name
+    %br/
+    = f.text_field :first_name
+  %p
+    = f.label :last_name
+    %br/
+    = f.text_field :last_name
+  %p
+    = f.label :email
+    %br/
+    = f.text_field :email
+  %p
+    = f.submit
+    %br/
+%p
+  = link_to 'Retour', admin_customers_path
