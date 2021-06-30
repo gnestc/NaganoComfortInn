@@ -1,0 +1,29 @@
+%h1 Réservation enregistrée avec succès!
+
+%div
+  = params.inspect
+
+= form_for :res do |f|
+
+  %p
+    = f.label :start_date, "Arrivée"
+    %br/
+    = f.label :start_date, @reservation.start_date
+  %p
+    = f.label :end_date, "Départ"
+    %br/
+    = f.label :end_date, @reservation.end_date
+  %p
+    = f.label :view_id, "Vue de la chambre"
+    %br/
+    = f.label :view_desc, @room.view.view_desc
+  %p
+    = f.label :room_type_id, "Type de chambre"
+    %br/
+    = f.label :room_type_id, @room.room_type.type_desc
+  %p
+    = f.label :email, "Courriel lié au compte"
+    %br/
+    = f.label :email, @reservation.customer.email
+
+  = link_to 'Retour', root_path

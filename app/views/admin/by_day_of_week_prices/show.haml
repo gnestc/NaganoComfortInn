@@ -1,0 +1,10 @@
+%h1 Détails
+%p
+  Description: #{@by_day_of_week_price.day_desc}
+%p
+  Prix fixe: #{@by_day_of_week_price.fixed_price_variation}
+%p
+  Pourcentage: #{@by_day_of_week_price.percent_variation}
+
+%p
+  = link_to 'Retour', admin_change_prices_path

@@ -1,15 +1,18 @@
 %h1 Nouvelle réservation
 
-= form_for :reservation do |f|
+%div
+  = params.inspect
+
+= form_for :res, url: confirmed_path do |f|
 
   %p
     = f.label :start_date, "Arrivée"
     %br/
-    = f.label :start_date, params[:start_date]
+    = f.text_field :start_date, value: params[:start_date], readonly: true
   %p
     = f.label :end_date, "Départ"
     %br/
-    = f.label :end_date, params[:end_date]
+    = f.text_field :end_date, value: params[:end_date], readonly: true
   %p
     = f.label :view_id, "Vue de la chambre"
     %br/
@@ -19,11 +22,12 @@
     %br/
     = f.label :room_type_id, @room.room_type.type_desc
   %p
-    = f.label :email, "Courriel lié au compte"
+    = f.label :customer_id, "Courriel lié au compte"
     %br/
-    = f.text_field :email
+    = f.text_field :customer_id
 
+    = f.hidden_field :room_id, value: @room.id
   %p
     = f.submit
     %br/
-= link_to 'Retour', results_path
+  = link_to 'Retour', results_path

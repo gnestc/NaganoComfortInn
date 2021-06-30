@@ -3,4 +3,6 @@ class View < ActiveRecord::Base
   has_many :rooms
 
   scope :not_deleted, -> { where(deleted_at: nil) }
+
+  validates :view_desc, presence: { strict: true }
 end

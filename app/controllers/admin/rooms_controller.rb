@@ -9,14 +9,14 @@ module Admin
     end
 
     def new
-      @views = View.all
-      @room_types = RoomType.all
+      @views = View.not_deleted
+      @room_types = RoomType.not_deleted
     end
 
     def edit
       @room = Room.find(params[:id])
-      @views = View.all
-      @room_types = RoomType.all
+      @views = View.not_deleted
+      @room_types = RoomType.not_deleted
     end
 
     def create

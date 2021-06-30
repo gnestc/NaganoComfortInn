@@ -1,5 +1,5 @@
-%h1 Nouvelle facture
-= form_for @invoice, url: admin_invoices_path do |f|
+%h1 Modifier une facture
+= form_for @invoice, url: admin_invoice_path do |f|
   %p
     = f.label :reservation_id, "Réservation"
     %br/

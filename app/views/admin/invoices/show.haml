@@ -1,0 +1,8 @@
+%h1 Détails
+%p
+  Réservation: #{@invoice.reservation.id}
+%p
+  Client: #{@invoice.customer.first_name} #{@invoice.customer.last_name}
+
+%p
+  = link_to 'Retour', admin_reservations_path

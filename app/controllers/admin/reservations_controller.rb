@@ -7,12 +7,13 @@ module Admin
 
     def index
       @reservations = Reservation.not_deleted
+      @invoices = Invoice.not_deleted
     end
 
     def edit
       @reservation = Reservation.find(params[:id])
-      @customers = Customer.all
-      @rooms = Room.all
+      @customers = Customer.not_deleted
+      @rooms = Room.not_deleted
     end
 
     def update
@@ -29,7 +30,7 @@ module Admin
     end
 
     def search
-      @rooms = Room.all
+      @rooms = Room.not_deleted
     end
   end
 end

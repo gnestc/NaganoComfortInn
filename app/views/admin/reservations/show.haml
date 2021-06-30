@@ -1,6 +1,6 @@
-%h1 Showing!
+%h1 Détails
 %p
-  Nom du client: #{@reservation.customer.first_name + " " + @reservation.customer.last_name}
+  Nom du client: #{@reservation.customer.first_name.to_s + " " + @reservation.customer.last_name}
 
 %p
   Chambres réservées:
