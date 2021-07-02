@@ -18,7 +18,32 @@ module Admin
 
     def create
       @invoice = Invoice.new(params[:invoice])
+
+      roomList = ReservationsRoom.rooms_in_reservation(@invoice.reservation_id)
+      reservation = Reservation.select([:start_date, :end_date]).where(id: @invoice.reservation_id)
+
+      start_date = reservation.first.start_date
+      end_date = reservation.first.end_date
+      @periodTotal = 0
+
+      (start_date..end_date).each do |day|
+        dayOfWeek = day.strftime("%A")
+        dayPrices = ByDayOfWeekPrice.not_deleted.where(day_desc: dayOfWeek)
+        @periodTotal += dayPrices.first.fixed_price_variation
+        times = ByTimeOfYearPrice.not_deleted.in_range(day)
+        times.each do |time|
+          @periodTotal += time.fixed_price_variation
+        end
+      end
+
+      @invoice.subtotal = @periodTotal
       @invoice.save
+
+      roomList.each do |room|
+        @invoice_detail = InvoiceDetail.new(invoice_id: @invoice.id, owner_id: room.id, owner_type: "room")
+        @invoice_detail.save
+      end
+
       redirect_to admin_invoice_path(@invoice)
     end
 

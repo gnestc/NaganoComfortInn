@@ -3,4 +3,5 @@ class ByTimeOfYearPrice < ActiveRecord::Base
   has_many :invoice_details, as: :owner
 
   scope :not_deleted, -> { where(deleted_at: nil) }
+  scope :in_range, ->(date) { where("start_date <= ? AND end_date >= ?", date, date) }
 end
