@@ -1,0 +1,25 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset = UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %h1
+      Votre copie de facture
+    %p
+      Client: #{@invoice.customer.first_name} #{@invoice.customer.last_name} #{@invoice.customer.email}
+      %br/
+    %p
+      Réservation: #{@invoice.reservation.id}
+      Arrivée le #{@invoice.reservation.start_date}
+      Départ le #{@invoice.reservation.end_date}
+      Chambres
+      - roomList = ReservationsRoom.rooms_in_reservation(@invoice.reservation_id)
+      - roomList.each do |room|
+        = room.room.number
+      %br/
+    %p
+      Sous-total: #{@invoice.subtotal}
+      %br/
+
+    %p Merci de faire confiance aux hôtels Nagano Comfort Inn
+    %p Au plaisir de vous voir!

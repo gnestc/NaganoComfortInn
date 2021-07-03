@@ -1,4 +1,5 @@
 NaganoComfortInn::Application.routes.draw do
+  default_url_options :host => "localhost:3000"
   root to: 'pages#home'
   get "results", to:'pages#results'
   get "confirmation", to:'pages#confirmation'

@@ -44,7 +44,10 @@ module Admin
         @invoice_detail.save
       end
 
-      redirect_to admin_invoice_path(@invoice)
+      respond_to do |format|
+        InvoiceMailer.invoice_email(@invoice).deliver
+        format.html { redirect_to admin_invoice_path(@invoice) }
+      end
     end
 
     def update
