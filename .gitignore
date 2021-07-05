@@ -14,4 +14,4 @@
 /log/*.log
 /tmp
 
-/pwd.rb
+/config/environments/pwd.rb

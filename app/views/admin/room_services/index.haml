@@ -1,0 +1,17 @@
+%h1 Liste des chambres à préparer
+%table
+  %thread
+    %tr
+      %th Numéro de la chambre
+      %th Libre depuis
+      %th{:colspan => "3"} Actions
+  %tbody
+    - @room_services.each do |room_service|
+      %tr
+        %td= room_service.room.number
+        %td= room_service.created_at
+        %td= link_to 'Voir', admin_room_service_path(room_service)
+        %td= link_to 'Modifier', edit_admin_room_service_path(room_service)
+        %td= link_to 'Supprimer', admin_room_service_path(room_service), method: :delete
+%p
+  = link_to 'Nouvelle chambre à préparer', new_admin_room_service_path

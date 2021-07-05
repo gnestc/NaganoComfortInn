@@ -38,6 +38,9 @@ gem 'jquery-ui-rails'
 
 gem 'pry-debugger'
 
+gem 'wicked_pdf', '~> 1.1.0'
+gem 'wkhtmltopdf-binary'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

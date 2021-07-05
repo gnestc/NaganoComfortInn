@@ -139,6 +139,8 @@ GEM
     tzinfo (0.3.60)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
+    wicked_pdf (1.1.0)
+    wkhtmltopdf-binary (0.12.6.5)
 
 PLATFORMS
   ruby
@@ -159,6 +161,8 @@ DEPENDENCIES
   sqlite3
   therubyracer
   uglifier (>= 1.0.3)
+  wicked_pdf (~> 1.1.0)
+  wkhtmltopdf-binary
 
 BUNDLED WITH
    1.17.3

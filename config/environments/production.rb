@@ -1,4 +1,5 @@
-require 'pwd.rb'
+require_relative 'pwd'
+include Pwd
 
 NaganoComfortInn::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
@@ -75,7 +76,7 @@ NaganoComfortInn::Application.configure do
     port:                 587,
     domain:               'gmail.com',
     user_name:            'carl.genest@semiweb.ca',
-    password:             Pwd::pwd,
+    password:             @pwd,
     authentication:       'plain',
     # enable_starttls_auto: true
   }

@@ -1,13 +1,9 @@
 NaganoComfortInn::Application.routes.draw do
-  default_url_options :host => "localhost:3000"
+  # default_url_options :host => "localhost:3000"
   root to: 'pages#home'
   get "results", to:'pages#results'
   get "confirmation", to:'pages#confirmation'
   post "confirmed", to:'pages#confirmed'
-
-  resources :reports
-  resources :room_services
-
   get 'search', to:'admin/reservations#search'
 
   namespace :admin do
@@ -20,5 +16,7 @@ NaganoComfortInn::Application.routes.draw do
     resources :by_day_of_week_prices
     resources :by_time_of_year_prices
     resources :invoices
+    resources :reports
+    resources :room_services
   end
 end

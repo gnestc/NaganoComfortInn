@@ -20,9 +20,9 @@
           = link_to "Modifier les réservations", admin_reservations_path, class: "dropdown-item"
           = link_to "Modifier les chambres", admin_rooms_path, class: "dropdown-item"
           = link_to "Modifier les prix", admin_change_prices_path, class: "dropdown-item"
-          %a.dropdown-item{:href => "#"} Prévoir des changements de prix
+          = link_to "Service aux chambres", admin_room_services_path, class: "dropdown-item"
           .dropdown-divider
-          %a.dropdown-item{:href => "#"} Rapports journaliers
+          = link_to "Rapports journaliers", admin_reports_path, class: "dropdown-item"
     %form.form-inline.my-2.my-lg-0
       %div.date-container
         %input.datepicker{"aria-label" => "Search", :placeholder => "Arrivée", :type => "search"}/
