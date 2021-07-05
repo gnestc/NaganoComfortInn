@@ -1,6 +1,6 @@
-%h1 Liste des chambres
-%table
-  %thread
+%h2 Liste des chambres
+%table.table
+  %thead.thead-dark
     %tr
       %th Numéro de chambre
       %th Disponibilité
@@ -10,8 +10,8 @@
       %tr
         %td= room.number
         %td= room.is_available ? "Disponible" : "Non disponible"
-        %td= link_to 'Voir', admin_room_path(room)
-        %td= link_to 'Modifier', edit_admin_room_path(room)
-        %td= link_to 'Supprimer', admin_room_path(room), method: :delete
+        %td= button_to 'Voir', admin_room_path(room), :method => :get, class: "btn btn-outline-primary"
+        %td= button_to 'Modifier', edit_admin_room_path(room), :method => :get, class: "btn btn-outline-info"
+        %td= button_to 'Supprimer', admin_room_path(room), method: :delete, class: "btn btn-outline-danger"
 %p
   = link_to 'Ajouter une nouvelle chambre', new_admin_room_path

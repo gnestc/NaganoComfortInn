@@ -1,8 +1,9 @@
 = wicked_pdf_stylesheet_link_tag "pdf"
 = wicked_pdf_javascript_include_tag "number_pages"
 
-%h1 Détails
-%p
-  Numéro du rapport: #{@report.id}
-%p
-  Date d'émission: #{@report.issue_date}
+%div.jumbotron
+  %h1.display-4 Rapport
+  %p
+    Numéro du rapport: #{@report.id}
+  %p
+    Date d'émission: #{@report.issue_date}

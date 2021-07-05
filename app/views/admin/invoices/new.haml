@@ -1,15 +1,16 @@
-%h1 Nouvelle facture
-= form_for :invoice, url: admin_invoices_path do |f|
-  %p
-    = f.label :reservation_id, "Réservation"
-    %br/
-    = f.text_field :reservation_id
-    %br/
-    = f.label :customer_id, "Client"
-    %br/
-    = f.text_field :customer_id
+%div.jumbotron
+  %h1.display-4 Nouvelle facture
+  = form_for :invoice, url: admin_invoices_path do |f|
+    %p
+      = f.label :reservation_id, "Réservation"
+      %br/
+      = f.text_field :reservation_id
+      %br/
+      = f.label :customer_id, "Client"
+      %br/
+      = f.text_field :customer_id
 
-  %p
-    = f.submit
-    %br/
-= link_to 'Retour', admin_reservations_path
+    %p
+      = f.submit
+      %br/
+  = link_to 'Retour', admin_reservations_path

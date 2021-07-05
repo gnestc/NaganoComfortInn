@@ -1,18 +1,19 @@
-%h1 Modifier une vue
-= form_for(@view, url: admin_view_path) do |f|
-  %p
-    = f.label :view_desc
-    %br/
-    = f.text_field :view_desc
-  %p
-    = f.label :view_fixed_price
-    %br/
-    = f.text_field :view_fixed_price
-  %p
-    = f.label :view_percent_variation
-    %br/
-    = f.text_field :view_percent_variation
-  %p
-    = f.submit
-    %br/
-= link_to 'Retour', admin_change_prices_path
+%div.jumbotron
+  %h1.display-4 Modifier une vue
+  = form_for(@view, url: admin_view_path) do |f|
+    %p
+      = f.label :view_desc
+      %br/
+      = f.text_field :view_desc
+    %p
+      = f.label :view_fixed_price
+      %br/
+      = f.text_field :view_fixed_price
+    %p
+      = f.label :view_percent_variation
+      %br/
+      = f.text_field :view_percent_variation
+    %p
+      = f.submit
+      %br/
+  = link_to 'Retour', admin_change_prices_path

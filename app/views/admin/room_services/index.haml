@@ -1,6 +1,6 @@
-%h1 Liste des chambres à préparer
-%table
-  %thread
+%h2 Liste des chambres à préparer
+%table.table
+  %thead.thead-dark
     %tr
       %th Numéro de la chambre
       %th Libre depuis
@@ -10,8 +10,8 @@
       %tr
         %td= room_service.room.number
         %td= room_service.created_at
-        %td= link_to 'Voir', admin_room_service_path(room_service)
-        %td= link_to 'Modifier', edit_admin_room_service_path(room_service)
-        %td= link_to 'Supprimer', admin_room_service_path(room_service), method: :delete
+        %td= button_to 'Voir', admin_room_service_path(room_service), :method => :get, class: "btn btn-outline-primary"
+        %td= button_to 'Modifier', edit_admin_room_service_path(room_service), :method => :get, class: "btn btn-outline-info"
+        %td= button_to 'Supprimer', admin_room_service_path(room_service), method: :delete, class: "btn btn-outline-danger"
 %p
   = link_to 'Nouvelle chambre à préparer', new_admin_room_service_path

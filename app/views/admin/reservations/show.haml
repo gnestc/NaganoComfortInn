@@ -1,11 +1,12 @@
-%h1 Détails
-%p
-  Nom du client: #{@reservation.customer.first_name.to_s + " " + @reservation.customer.last_name}
+%div.jumbotron
+  %h1.display-4 Détails
+  %p
+    Nom du client: #{@reservation.customer.first_name.to_s + " " + @reservation.customer.last_name}
 
-%p
-  Chambres réservées:
-  - @reservation.reservations_rooms.each do |r|
-    = r.room.number.to_s + "; "
+  %p
+    Chambres réservées:
+    - @reservation.reservations_rooms.each do |r|
+      = r.room.number.to_s + "; "
 
-%p
-  = link_to 'Retour', admin_reservations_path
+  %p
+    = link_to 'Retour', admin_reservations_path

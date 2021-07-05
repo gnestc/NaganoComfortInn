@@ -1,11 +1,12 @@
-%h1 Détails
-%p
-  Numéro de la chambre: #{@room.number}
-%p
-  Disponibilité: #{@room.is_available ? "Disponible" : "Non disponible"}
-%p
-  Type de vue: #{@room.view.view_desc}
-%p
-  Type de chambre: #{@room.room_type.type_desc}
-%p
-  = link_to 'Retour', admin_rooms_path
+%div.jumbotron
+  %h1.display-4 Détails
+  %p
+    Numéro de la chambre: #{@room.number}
+  %p
+    Disponibilité: #{@room.is_available ? "Disponible" : "Non disponible"}
+  %p
+    Type de vue: #{@room.view.view_desc}
+  %p
+    Type de chambre: #{@room.room_type.type_desc}
+  %p
+    = link_to 'Retour', admin_rooms_path

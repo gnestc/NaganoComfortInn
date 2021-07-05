@@ -1,12 +1,13 @@
-%h1 Nouveau rapport
-= form_for :report, url: admin_reports_path do |f|
-  %p
-    = f.label :issue_date, "Date d'émission du rapport"
-    %br/
-    = f.text_field :issue_date, value: @today.to_s
-    %br/
+%div.jumbotron
+  %h1.display-4 Nouveau rapport
+  = form_for :report, url: admin_reports_path do |f|
+    %p
+      = f.label :issue_date, "Date d'émission du rapport"
+      %br/
+      = f.text_field :issue_date, value: @today.to_s
+      %br/
 
-  %p
-    = f.submit
-    %br/
-= link_to 'Retour', admin_reports_path
+    %p
+      = f.submit
+      %br/
+  = link_to 'Retour', admin_reports_path

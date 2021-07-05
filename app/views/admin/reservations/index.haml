@@ -1,6 +1,6 @@
-%h1 Liste des réservations
-%table
-  %thread
+%h2 Liste des réservations
+%table.table
+  %thead.thead-dark
     %tr
       %th Numéro de réservation
       %th Nom du client
@@ -10,15 +10,15 @@
       %tr
         %td= reservation.id
         %td= reservation.customer.first_name + " " + reservation.customer.last_name
-        %td= link_to 'Voir', admin_reservation_path(reservation)
-        %td= link_to 'Modifier', edit_admin_reservation_path(reservation)
-        %td= link_to 'Supprimer', admin_reservation_path(reservation), method: :delete
+        %td= button_to 'Voir', admin_reservation_path(reservation), :method => :get, class: "btn btn-outline-primary"
+        %td= button_to 'Modifier', edit_admin_reservation_path(reservation), :method => :get, class: "btn btn-outline-info"
+        %td= button_to 'Supprimer', admin_reservation_path(reservation), method: :delete, class: "btn btn-outline-danger"
 %p
   = link_to 'Nouvelle recherche', search_path
 
-%h1 Liste des factures
-%table
-  %thread
+%h2 Liste des factures
+%table.table
+  %thead.thead-dark
     %tr
       %th Numéro de facture
       %th Nom du client
@@ -30,8 +30,8 @@
         %td= invoice.id
         %td= invoice.customer.first_name + " " + invoice.customer.last_name
         %td= invoice.reservation_id
-        %td= link_to 'Voir', admin_invoice_path(invoice)
-        %td= link_to 'Modifier', edit_admin_invoice_path(invoice)
-        %td= link_to 'Supprimer', admin_invoice_path(invoice), method: :delete
+        %td= button_to 'Voir', admin_invoice_path(invoice), :method => :get, class: "btn btn-outline-primary"
+        %td= button_to 'Modifier', edit_admin_invoice_path(invoice), :method => :get, class: "btn btn-outline-info"
+        %td= button_to 'Supprimer', admin_invoice_path(invoice), method: :delete, class: "btn btn-outline-danger"
 %p
   = link_to 'Nouvelle facture', new_admin_invoice_path

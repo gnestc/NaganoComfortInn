@@ -1,13 +1,14 @@
-%h1 Détails
-%p
-  Description: #{@by_time_of_year_price.time_desc}
-%p
-  Prix fixe: #{@by_time_of_year_price.fixed_price_variation}
-%p
-  Pourcentage: #{@by_time_of_year_price.percent_variation}
-%p
-  Arrivée: #{@by_time_of_year_price.start_date}
-%p
-  Départ: #{@by_time_of_year_price.end_date}
-%p
-  = link_to 'Retour', admin_change_prices_path
+%div.jumbotron
+  %h1.display-4 Détails
+  %p
+    Description: #{@by_time_of_year_price.time_desc}
+  %p
+    Prix fixe: #{@by_time_of_year_price.fixed_price_variation}
+  %p
+    Pourcentage: #{@by_time_of_year_price.percent_variation}
+  %p
+    Arrivée: #{@by_time_of_year_price.start_date}
+  %p
+    Départ: #{@by_time_of_year_price.end_date}
+  %p
+    = link_to 'Retour', admin_change_prices_path

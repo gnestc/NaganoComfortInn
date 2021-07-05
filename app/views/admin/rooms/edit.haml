@@ -1,14 +1,27 @@
-%h1 Nouvelle facture
-= form_for @invoice, url: admin_invoices_path do |f|
-  %p
-    = f.label :reservation_id, "Réservation"
-    %br/
-    = f.text_field :reservation_id
-    %br/
-    = f.label :customer_id, "Client"
-    %br/
-    = f.text_field :customer_id
-  %p
-    = f.submit
-    %br/
-= link_to 'Retour', admin_reservations_path
+%div.jumbotron
+  %h1.display-4 Modifier une chambre
+  = form_for(@room, url: admin_room_path) do |f|
+    %p
+      = f.label :id, 'Numéro de la chambre'
+      %br/
+      = f.text_field :number
+    %p
+      = f.label :is_available, "Disponibilité"
+      %br/
+      = f.radio_button :is_available, true
+      = f.label :is_available, 'Disponible', :value => true
+      %br/
+      = f.radio_button :is_available, false
+      = f.label :is_available, 'Non disponible', :value => false
+    %p
+      = f.label :view_id, "Type de vue"
+      %br/
+      = f.select :view_id, options_for_select(@views.map{|v| [v.view_desc, v.id]}, @room.view_id)
+    %p
+      = f.label :room_type_id, "Type de chambre"
+      %br/
+      = f.select :room_type_id, options_for_select(@room_types.map{|t| [t.type_desc, t.id]}, @room.room_type_id)
+    %p
+      = f.submit
+      %br/
+    = link_to 'Retour', admin_rooms_path

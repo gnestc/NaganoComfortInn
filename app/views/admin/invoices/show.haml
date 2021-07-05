@@ -1,8 +1,9 @@
-%h1 Détails
-%p
-  Réservation: #{@invoice.reservation.id}
-%p
-  Client: #{@invoice.customer.first_name} #{@invoice.customer.last_name}
+%div.jumbotron
+  %h1.display-4 Détails
+  %p
+    Réservation: #{@invoice.reservation.id}
+  %p
+    Client: #{@invoice.customer.first_name} #{@invoice.customer.last_name}
 
-%p
-  = link_to 'Retour', admin_reservations_path
+  %p
+    = link_to 'Retour', admin_reservations_path

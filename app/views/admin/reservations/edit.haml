@@ -1,15 +1,16 @@
-%h1 Modifier une réservation
-= form_for(@reservation, url: admin_reservation_path) do |f|
-  %p
-    = f.label :customer_id
-    %br/
-    = f.select :customer_id, options_for_select(@customers.map{|c| [c.first_name + " " + c.last_name, c.id]}, @reservation.customer_id)
-  //%p
-  // = f.label :room_id
-  // %br/
-  //= f.select :room_id, options_for_select(@rooms.map{|r| [r.number, r.id]}, @reservation.room_id)
+%div.jumbotron
+  %h1.display-4 Modifier une réservation
+  = form_for(@reservation, url: admin_reservation_path) do |f|
+    %p
+      = f.label :customer_id
+      %br/
+      = f.select :customer_id, options_for_select(@customers.map{|c| [c.first_name + " " + c.last_name, c.id]}, @reservation.customer_id)
+    //%p
+    // = f.label :room_id
+    // %br/
+    //= f.select :room_id, options_for_select(@rooms.map{|r| [r.number, r.id]}, @reservation.room_id)
 
-  %p
-    = f.submit
-    %br/
-= link_to 'Retour', admin_reservations_path
+    %p
+      = f.submit
+      %br/
+  = link_to 'Retour', admin_reservations_path

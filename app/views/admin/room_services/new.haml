@@ -1,13 +1,14 @@
-%h1 Nouveau chambre à préparer
-= form_for :room_service, url: admin_room_services_path do |f|
-  %p
-    = f.label :room_id, "Numéro de la chambre"
-    %br/
-    = f.select :room_id, @rooms.map{|r| [r.number, r.id]}, :include_blank => "Sélectionnez une chambre"
-    %br/
-    = f.text_field :created_at, value: @today.to_s
+%div.jumbotron
+  %h1.display-4 Nouveau chambre à préparer
+  = form_for :room_service, url: admin_room_services_path do |f|
+    %p
+      = f.label :room_id, "Numéro de la chambre"
+      %br/
+      = f.select :room_id, @rooms.map{|r| [r.number, r.id]}, :include_blank => "Sélectionnez une chambre"
+      %br/
+      = f.text_field :created_at, value: @today.to_s
 
-  %p
-    = f.submit
-    %br/
-= link_to 'Retour', admin_room_services_path
+    %p
+      = f.submit
+      %br/
+  = link_to 'Retour', admin_room_services_path

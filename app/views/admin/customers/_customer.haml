@@ -3,6 +3,6 @@
   %td= customer.last_name
   %td= customer.phone
   %td= customer.email
-  %td= link_to 'Voir', admin_customer_path(customer)
-  %td= link_to 'Modifier', edit_admin_customer_path(customer)
-  %td= link_to 'Supprimer', admin_customer_path(customer), method: :delete, remote: true
+  %td= button_to 'Voir', admin_customer_path(customer), class: "btn btn-outline-primary", :method => :get, class: "btn btn-outline-primary"
+  %td= button_to 'Modifier', edit_admin_customer_path(customer), class: "btn btn-outline-info", :method => :get
+  %td= button_to 'Supprimer', admin_customer_path(customer), method: :delete, remote: true, class: "btn btn-outline-danger"

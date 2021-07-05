@@ -1,18 +1,19 @@
-%h1 Nouveau prix pour une journée
-= form_for :by_day_of_week_price, url: admin_by_day_of_week_prices_path do |f|
-  %p
-    = f.label :day_desc, "Description"
-    %br/
-    = f.select :day_desc, options_for_select([['Monday'], ['Tuesday'], ['Wednesday'], ['Thursday'], ['Friday'], ['Saturday'], ['Sunday']]), :prompt => 'Sélectionnez un jour de la semaine'
-  %p
-    = f.label :fixed_price_variation, "Prix fixe"
-    %br/
-    = f.text_field :fixed_price_variation
-  %p
-    = f.label :percent_variation, "Pourcentage"
-    %br/
-    = f.text_field :percent_variation
-  %p
-    = f.submit
-    %br/
-= link_to 'Retour', admin_change_prices_path
+%div.jumbotron
+  %h1.display-4 Nouveau prix pour une journée
+  = form_for :by_day_of_week_price, url: admin_by_day_of_week_prices_path do |f|
+    %p
+      = f.label :day_desc, "Description"
+      %br/
+      = f.select :day_desc, options_for_select([['Monday'], ['Tuesday'], ['Wednesday'], ['Thursday'], ['Friday'], ['Saturday'], ['Sunday']]), :prompt => 'Sélectionnez un jour de la semaine'
+    %p
+      = f.label :fixed_price_variation, "Prix fixe"
+      %br/
+      = f.text_field :fixed_price_variation
+    %p
+      = f.label :percent_variation, "Pourcentage"
+      %br/
+      = f.text_field :percent_variation
+    %p
+      = f.submit
+      %br/
+  = link_to 'Retour', admin_change_prices_path

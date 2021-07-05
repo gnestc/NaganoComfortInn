@@ -1,19 +1,20 @@
-%h1 Modification de prix pour une période
-= form_for @by_day_of_week_price, url: admin_by_day_of_week_prices_path do |f|
-  %p
-    = f.label :time_desc, "Description"
-    %br/
-    = f.text_field :day_desc
-  %p
-    = f.label :fixed_price_variation, "Prix fixe"
-    %br/
-    = f.text_field :fixed_price_variation
-  %p
-    = f.label :percent_variation, "Pourcentage"
-    %br/
-    = f.text_field :percent_variation
+%div.jumbotron
+  %h1.display-4 Modification de prix pour une journée
+  = form_for @by_day_of_week_price, url: admin_by_day_of_week_prices_path do |f|
+    %p
+      = f.label :time_desc, "Description"
+      %br/
+      = f.text_field :day_desc
+    %p
+      = f.label :fixed_price_variation, "Prix fixe"
+      %br/
+      = f.text_field :fixed_price_variation
+    %p
+      = f.label :percent_variation, "Pourcentage"
+      %br/
+      = f.text_field :percent_variation
 
-  %p
-    = f.submit
-    %br/
-= link_to 'Retour', admin_change_prices_path
+    %p
+      = f.submit
+      %br/
+  = link_to 'Retour', admin_change_prices_path

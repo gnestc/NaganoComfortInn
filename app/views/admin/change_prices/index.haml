@@ -1,6 +1,6 @@
 %h2 Prix en fonction de la vue
-%table
-  %thread
+%table.table
+  %thead.thead-dark
     %tr
       %th Vue
       %th Variation du prix
@@ -12,15 +12,15 @@
         %td= view.view_desc
         %td= view.view_percent_variation
         %td= number_with_precision(view.view_fixed_price, precision: 2)
-        %td= link_to 'Voir', admin_view_path(view)
-        %td= link_to 'Modifier', edit_admin_view_path(view)
-        %td= link_to 'Supprimer', admin_view_path(view), method: :delete
+        %td= button_to 'Voir', admin_view_path(view), :method => :get, class: "btn btn-outline-primary"
+        %td= button_to 'Modifier', edit_admin_view_path(view), :method => :get, class: "btn btn-outline-info"
+        %td= button_to 'Supprimer', admin_view_path(view), method: :delete, class: "btn btn-outline-danger"
 %p
   = link_to 'Entrer une nouvelle vue', new_admin_view_path
 
 %h2 Prix en fonction du type de chambre
-%table
-  %thread
+%table.table
+  %thead.thead-dark
     %tr
       %th Type
       %th Variation du prix
@@ -32,15 +32,15 @@
         %td= room_type.type_desc
         %td= room_type.type_percent_variation
         %td= number_with_precision(room_type.type_fixed_price, precision: 2)
-        %td= link_to 'Voir', admin_room_type_path(room_type)
-        %td= link_to 'Modifier', edit_admin_room_type_path(room_type)
-        %td= link_to 'Supprimer', admin_room_type_path(room_type), method: :delete
+        %td= button_to 'Voir', admin_room_type_path(room_type), :method => :get, class: "btn btn-outline-primary"
+        %td= button_to 'Modifier', edit_admin_room_type_path(room_type), :method => :get, class: "btn btn-outline-info"
+        %td= button_to 'Supprimer', admin_room_type_path(room_type), method: :delete, class: "btn btn-outline-danger"
 %p
   = link_to 'Entrer un nouveau type de chambre', new_admin_room_type_path
 
 %h2 Prix en fonction du jour de la semaine
-%table
-  %thread
+%table.table
+  %thead.thead-dark
     %tr
       %th Description
       %th Variation du prix
@@ -52,15 +52,15 @@
         %td= day.day_desc
         %td= day.percent_variation
         %td= number_with_precision(day.fixed_price_variation, precision: 2)
-        %td= link_to 'Voir', admin_by_day_of_week_price_path(day)
-        %td= link_to 'Modifier', edit_admin_by_day_of_week_price_path(day)
-        %td= link_to 'Supprimer', admin_by_day_of_week_price_path(day), method: :delete
+        %td= button_to 'Voir', admin_by_day_of_week_price_path(day), :method => :get, class: "btn btn-outline-primary"
+        %td= button_to 'Modifier', edit_admin_by_day_of_week_price_path(day), :method => :get, class: "btn btn-outline-info"
+        %td= button_to 'Supprimer', admin_by_day_of_week_price_path(day), method: :delete, class: "btn btn-outline-danger"
 %p
   = link_to 'Entrer un nouveau prix', new_admin_by_day_of_week_price_path
 
 %h2 Prix en fonction de la période
-%table
-  %thread
+%table.table
+  %thead.thead-dark
     %tr
       %th Description
       %th Variation du prix
@@ -72,8 +72,8 @@
         %td= time.time_desc
         %td= time.percent_variation
         %td= number_with_precision(time.fixed_price_variation, precision: 2)
-        %td= link_to 'Voir', admin_by_time_of_year_price_path(time)
-        %td= link_to 'Modifier', edit_admin_by_time_of_year_price_path(time)
-        %td= link_to 'Supprimer', admin_by_time_of_year_price_path(time), method: :delete
+        %td= button_to 'Voir', admin_by_time_of_year_price_path(time), :method => :get, class: "btn btn-outline-primary"
+        %td= button_to 'Modifier', edit_admin_by_time_of_year_price_path(time), :method => :get, class: "btn btn-outline-info"
+        %td= button_to 'Supprimer', admin_by_time_of_year_price_path(time), method: :delete, class: "btn btn-outline-danger"
 %p
   = link_to 'Entrer un nouveau prix', new_admin_by_time_of_year_price_path

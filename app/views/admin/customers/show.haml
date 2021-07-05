@@ -1,13 +1,14 @@
-%h1 Détails
-%p
-  Prénom: #{@customer.first_name}
-%p
-  Nom: #{@customer.last_name}
-%p
-  Téléphone: #{@customer.phone}
-%p
-  Courriel: #{@customer.email}
-%p
-  Numéro de carte de crédit: #{@customer.credit_card_num}
-%p
-  = link_to 'Retour', admin_customers_path
+%div.jumbotron
+  %h1.display-4 Détails
+  %p
+    Prénom: #{@customer.first_name}
+  %p
+    Nom: #{@customer.last_name}
+  %p
+    Téléphone: #{@customer.phone}
+  %p
+    Courriel: #{@customer.email}
+  %p
+    Numéro de carte de crédit: #{@customer.credit_card_num}
+  %p
+    = link_to 'Retour', admin_customers_path
