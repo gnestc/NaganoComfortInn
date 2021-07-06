@@ -15,6 +15,7 @@ class Room < ActiveRecord::Base
   scope :by_view, ->(view_id) { where(view_id: view_id) if view_id.present? }
   scope :by_type, ->(type_id) { where(room_type_id: type_id) if type_id.present? }
   scope :not_deleted, -> { where(deleted_at: nil) }
+  scope :not_selected, ->(room_id) { where("rooms.id <> ?", room_id) }
 
   validates :number, presence: { strict: true }, uniqueness: { strict: true }
   validates :room_type, presence: { strict: true }

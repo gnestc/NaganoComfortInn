@@ -1,33 +1,42 @@
-%h1 Nouvelle réservation
+%div.jumbotron
+  %h1.display-4 Nouvelle réservation
 
-%div
-  = params.inspect
+  %div
+    = @enough_room_msg
 
-= form_for :res, url: confirmed_path do |f|
+  = form_for :res, url: confirmed_path(:res, :roomsToReserve =>@rooms_to_reserve) do |f|
 
-  %p
-    = f.label :start_date, "Arrivée"
-    %br/
-    = f.text_field :start_date, value: params[:start_date], readonly: true
-  %p
-    = f.label :end_date, "Départ"
-    %br/
-    = f.text_field :end_date, value: params[:end_date], readonly: true
-  %p
-    = f.label :view_id, "Vue de la chambre"
-    %br/
-    = f.label :view_desc, @room.view.view_desc
-  %p
-    = f.label :room_type_id, "Type de chambre"
-    %br/
-    = f.label :room_type_id, @room.room_type.type_desc
-  %p
-    = f.label :customer_id, "Courriel lié au compte"
-    %br/
-    = f.text_field :customer_id
-
-    = f.hidden_field :room_id, value: @room.id
-  %p
-    = f.submit
-    %br/
-  = link_to 'Retour', results_path
+    %p
+      = f.label :start_date, "Arrivée : "
+      %br/
+      = f.text_field :start_date, value: params[:start_date], readonly: true
+    %p
+      = f.label :end_date, "Départ : "
+      %br/
+      = f.text_field :end_date, value: params[:end_date], readonly: true
+    %p
+      = f.label :view_id, "Vue sélectionnée : "
+      %br/
+      = f.label :view_desc, @view.view_desc if @view.present?
+    %p
+      = f.label :room_type_id, "Type sélectionné : "
+      %br/
+      = f.label :room_type_id, @room_type.type_desc if @room_type.present?
+    %p
+      Chambres sélectionnées:
+      %br/
+      - @rooms_to_reserve.values.each do |room|
+        = room
+    %p
+      Maximum de 2 personnes par chambre
+    %p
+      Sous-total :
+      = params[:price].to_f*@rooms_to_reserve.count
+    %p
+      = f.label :customer_id, "Entrez le courriel lié à votre compte"
+      %br/
+      = f.text_field :customer_id
+    %p
+      = f.submit "Confirmer la réservation"
+      %br/
+    = link_to 'Retour', :back

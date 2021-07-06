@@ -1,17 +1,16 @@
 %h2 Résultats
 %div
-  //= params.inspect
-  //= @rooms.inspect
+  = @enough_room_msg
 %nav.navbar.navbar-light.bg-light
-  = form_for :reservation, method: 'get', :html => {:class => 'form-inline'}, url: results_path do |f|
+  = form_for :res, method: 'get', :html => {:class => 'form-inline'}, url: results_path do |f|
     %div.bar-element
       = f.label :start_date, "Arrivée"
     %div.bar-element
-      = f.text_field :start_date, class: 'datepicker', value: params[:reservation][:start_date]
+      = f.text_field :start_date, class: 'datepicker', value: params[:res][:start_date]
     %div.bar-element
       = f.label :end_date, "Départ"
     %div.bar-element
-      = f.text_field :end_date, class: 'datepicker', value: params[:reservation][:end_date]
+      = f.text_field :end_date, class: 'datepicker', value: params[:res][:end_date]
 
     %div.bar-element
       = f.label :guests, "Personnes"
@@ -50,7 +49,11 @@
             =r.view.view_desc
           %li.list-group-item
             %div.price
-              100$
+              - price = @price_by_period + r.room_type.type_fixed_price + r.view.view_fixed_price
+              = price
         .card-body
-          = link_to "Réserver", confirmation_path(:room_id => r.id, :start_date => params[:reservation][:start_date], :end_date => params[:reservation][:end_date]), class: "card-link", method: :get
+          = link_to "Réserver", confirmation_path(:room_id => r.id, :start_date => params[:res][:start_date],
+          :end_date => params[:res][:end_date], :guests => params[:res][:guests],
+          :view_id => params[:res][:view_id], :room_type_id => params[:res][:room_type_id], :price => price),
+          class: "card-link", method: :get
           %a.card-link{:href => "#"} Détails
