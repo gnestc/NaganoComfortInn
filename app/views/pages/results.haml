@@ -1,6 +1,5 @@
 %h2 Résultats
-%div
-  = @enough_room_msg
+
 %nav.navbar.navbar-light.bg-light
   = form_for :res, method: 'get', :html => {:class => 'form-inline'}, url: results_path do |f|
     %div.bar-element
@@ -15,15 +14,15 @@
     %div.bar-element
       = f.label :guests, "Personnes"
     %div.bar-element
-      = f.text_field :guests, :style=>"width: 50px; height: 29px;"
+      = f.text_field :guests, :style=>"width: 50px; height: 29px;", value: params[:res][:guests]
     %div.bar-element
       = f.label :view_id, "Vue"
     %div.bar-element
-      = f.select :view_id, @views.map{|r| [r.view_desc, r.id]}, :include_blank => "Choisir"
+      = f.select :view_id, options_for_select(@views.map{|r| [r.view_desc, r.id]}, selected: params[:res][:view_id]), :include_blank => "Choisir"
     %div.bar-element
       = f.label :room_type_id, "Type de chambre"
     %div.bar-element
-      = f.select :room_type_id, @room_types.map{|r| [r.type_desc, r.id]}, :include_blank => "Choisir"
+      = f.select :room_type_id, options_for_select(@room_types.map{|r| [r.type_desc, r.id]}, selected: params[:res][:room_type_id]), :include_blank => "Choisir"
     %div.bar-element
       = f.label :contigues, "Contiguïté"
     %div.bar-element

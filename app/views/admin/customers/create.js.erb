@@ -1,3 +1,10 @@
-$('#newCustomer form').remove();
-$('#newCustomerLink').show();
-$('#customersBody').append("<%= j render @customer %>")
+<% if @customer.persisted? %>
+  $('#newCustomer form').remove();
+  $('#newCustomerLink').show();
+  $('#customersBody').append("<%= j render @customer %>")
+<% end %>
+$("#flash").html("<%= j render 'layouts/flash_messages' %>");
+
+
+
+

@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module Admin
   class RoomTypesController < ApplicationController
     def show
@@ -17,8 +18,14 @@ module Admin
     end
 
     def create
+      unless params[:room_type][:type_desc].present? && (params[:room_type][:type_fixed_price].present? || params[:room_type][:type_percent_variation].present?)
+        flash[:danger] = "Insérer un prix et une description."
+        redirect_to :back and return
+      end
+
       @room_type = RoomType.new(params[:room_type])
       @room_type.save
+      flash[:success] = "Type créé avec succès!"
       redirect_to admin_room_type_path(@room_type)
     end
 

@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'date'
 
 module Admin
@@ -19,8 +20,14 @@ module Admin
     end
 
     def create
+      unless params[:view][:view_desc].present? && (params[:view][:view_fixed_price].present? || params[:view][:view_percent_variation].present?)
+        flash[:danger] = "Insérer un prix et une description."
+        redirect_to :back and return
+      end
+
       @view = View.new(params[:view])
       @view.save
+      flash[:success] = "Vue créée avec succès!"
       redirect_to admin_view_path(@view)
     end
 

@@ -1,12 +1,12 @@
 %div.jumbotron
   %h1.display-4 Recherche par date
-  = form_for :reservation, method: 'get', url: results_path do |f|
+  = form_for :res, method: 'get', url: results_path do |f|
     %p
-      = f.label :start_date
+      = f.label :start_date, "Arrivée"
       %br/
       = f.text_field :start_date, class: 'datepicker'
     %p
-      = f.label :end_date
+      = f.label :end_date, "Départ"
       %br/
       = f.text_field :end_date, class: 'datepicker'
     %p

@@ -4,5 +4,5 @@ class RoomType < ActiveRecord::Base
 
   scope :not_deleted, -> { where(deleted_at: nil) }
 
-  validates :view_desc, presence: { strict: true }
+  validates :type_desc, presence: { strict: true }
 end

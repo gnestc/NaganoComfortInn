@@ -1,5 +1,5 @@
 %div#newForm
-  = form_for(:customer, url: admin_customers_path) do |f|
+  = form_for(:customer, url: admin_customers_url, remote: true) do |f|
     %p
       = f.label :first_name, "Prénom"
       %br/

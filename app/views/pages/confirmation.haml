@@ -1,9 +1,6 @@
 %div.jumbotron
   %h1.display-4 Nouvelle réservation
 
-  %div
-    = @enough_room_msg
-
   = form_for :res, url: confirmed_path(:res, :roomsToReserve =>@rooms_to_reserve) do |f|
 
     %p
@@ -39,4 +36,4 @@
     %p
       = f.submit "Confirmer la réservation"
       %br/
-    = link_to 'Retour', :back
+    = link_to 'Retour', results_path(:res=>{start_date: params[:start_date], end_date: params[:end_date]})

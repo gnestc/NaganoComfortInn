@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module Admin
   class InvoicesController < ApplicationController
     def show
@@ -17,6 +18,14 @@ module Admin
     end
 
     def create
+      if !(params[:invoice][:reservation_id].present?)
+        flash[:danger] = "Entrez un numéro de réservation"
+        redirect_to :back and return
+      elsif !(params[:invoice][:customer_id].present?)
+        flash[:danger] = "Entrez le numéro du client"
+        redirect_to :back and return
+      end
+
       @invoice = Invoice.new(params[:invoice])
 
       room_list = ReservationsRoom.rooms_in_reservation(@invoice.reservation_id)
@@ -46,6 +55,10 @@ module Admin
       room_list.each do |room|
         @invoice_detail = InvoiceDetail.new(invoice_id: @invoice.id, owner_id: room.id, owner_type: "room")
         @invoice_detail.save
+      end
+
+      if @invoice.save && @invoice_detail.save
+        flash[:success] = "Envoi par courriel réussi!"
       end
 
       respond_to do |format|

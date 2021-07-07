@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module Admin
   class RoomsController < ApplicationController
     def show
@@ -20,8 +21,14 @@ module Admin
     end
 
     def create
+      unless params[:room][:number].present? && params[:room][:room_type_id].present? && params[:room][:view_id].present?
+        flash[:danger] = "Le numéro, le type et la vue sont obligatoires."
+        redirect_to :back and return
+      end
+
       @room = Room.new(params[:room])
       @room.save
+      flash[:success] = "Chambre créée avec succès!"
       redirect_to admin_room_path(@room)
     end
 
