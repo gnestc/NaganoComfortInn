@@ -51,8 +51,8 @@
               - price = @price_by_period + r.room_type.type_fixed_price + r.view.view_fixed_price
               = price
         .card-body
-          = link_to "Réserver", confirmation_path(:room_id => r.id, :start_date => params[:res][:start_date],
+          = link_to "Réserver", confirmation_path(res: {:room_id => r.id, :start_date => params[:res][:start_date],
           :end_date => params[:res][:end_date], :guests => params[:res][:guests],
-          :view_id => params[:res][:view_id], :room_type_id => params[:res][:room_type_id], :price => price),
+          :view_id => params[:res][:view_id], :room_type_id => params[:res][:room_type_id], :price => price}),
           class: "card-link", method: :get
           %a.card-link{:href => "#"} Détails

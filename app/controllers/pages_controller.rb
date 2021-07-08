@@ -6,15 +6,11 @@ class PagesController < ApplicationController
   end
 
   def results
-    if params[:res][:start_date] < Date.today.strftime("%Y-%m-%d")
-      flash[:danger] = "La date d'arrivée ne peut précéder la date d'aujourd'hui."
-      redirect_to :back
-    elsif params[:res][:end_date] <= Date.today.strftime("%Y-%m-%d")
-      flash[:danger] = "La date de départ ne peut précéder la date de demain."
-      redirect_to :back
-    end
+    date_check(params[:res][:start_date], params[:res][:end_date])
 
-    @price_by_period = price_by_period(params[:res][:start_date], params[:res][:end_date])
+    start_date = Date.parse(params[:res][:start_date])
+    end_date = Date.parse(params[:res][:end_date])
+    @price_by_period = price_by_period(start_date, end_date) #Application Controller Method
 
     @views = View.not_deleted
     @room_types = RoomType.not_deleted
@@ -24,29 +20,15 @@ class PagesController < ApplicationController
     @rooms += Room.uniq.not_deleted.search_date(params[:res][:start_date], params[:res][:end_date])\
         .by_view(params[:res][:view_id]).by_type(params[:res][:room_type_id])
 
-    if params[:res][:guests].present?
-      binding.pry
-      if params[:res][:guests].to_f < 1
-        flash[:danger] = "Personnes : Veuillez entrer une valeur strictement positive."
-        redirect_to :back and return
-      end
-      @room_qty_asked = (params[:res][:guests].to_f/2.0).ceil
-      @rooms.count < @room_qty_asked ? flash.now[:danger] = "Nombre de chambres insuffisant à la quantité de personnes insérée (max. 2 par chambre)" : flash.now[:success] = "Nombre de chambres suffisant à la quantité de personnes insérée (max. 2 par chambre)"
-    end
+    guests_check(false, params[:res][:guests])
   end
 
   def confirmation
-    if params[:start_date] < Date.today.strftime("%Y-%m-%d")
-      flash[:danger] ="La date d'arrivée ne peut précéder la date d'aujourd'hui."
-      redirect_to :back
-    elsif params[:end_date] <= Date.today.strftime("%Y-%m-%d")
-      flash[:danger] = "La date de départ ne peut précéder la date de demain."
-      redirect_to :back
-    end
+    date_check(params[:res][:start_date], params[:res][:end_date])
 
-    @view = View.find(params[:view_id]) if params[:view_id].present?
-    @room_type = RoomType.find(params[:room_type_id]) if params[:room_type_id].present?
-    @room = Room.find(params[:room_id])
+    @view = View.find(params[:res][:view_id]) if params[:res][:view_id].present?
+    @room_type = RoomType.find(params[:res][:room_type_id]) if params[:res][:room_type_id].present?
+    @room = Room.find(params[:res][:room_id])
 
     @rooms = Room.uniq.not_deleted.never_reserved\
         .by_view(@room.view_id).by_type(@room.room_type_id).not_selected(@room.id)
@@ -56,25 +38,7 @@ class PagesController < ApplicationController
     @rooms_to_reserve = {}
     @rooms_to_reserve[0] = @room.number
 
-    if params[:guests].present?
-      if params[:guests].to_f < 1 || params[:guests].kind_of? != Integer
-        flash[:danger] = "Personnes : Veuillez entrer une valeur entière strictement positive."
-        redirect_to :back
-      end
-      @room_qty_asked = (params[:guests].to_i/2.0).ceil
-
-      if @rooms.count+1 < @room_qty_asked
-        flash.now[:danger] = "Nombre de chambres insuffisant à la quantité de personnes insérée (max. 2 par chambre)"
-      else
-        flash.now[:success] = "Nombre de chambres suffisant à la quantité de personnes insérée (max. 2 par chambre)"
-      end
-
-      if @room_qty_asked > 1
-        (0..@room_qty_asked-2).each do |i|
-          @rooms_to_reserve[i+1] = @rooms[i][:number]
-        end
-      end
-    end
+    guests_check(true, params[:res][:guests])
   end
 
   def confirmed
@@ -101,21 +65,39 @@ class PagesController < ApplicationController
       flash.now[:danger]= "La réservation n'a pas été enregistrée correctement. Une erreur est survenue."
     end
   end
-
   private
-    def price_by_period(start_date, end_date)
-      period_total = 0
-      start_date = Date.parse(start_date)
-      end_date = Date.parse(end_date)
-      (start_date..end_date).each do |day|
-        day_of_week = day.strftime("%A")
-        day_prices = ByDayOfWeekPrice.not_deleted.where(day_desc: day_of_week)
-        period_total += day_prices.first.fixed_price_variation
-        times = ByTimeOfYearPrice.not_deleted.in_range(day)
-        times.each do |time|
-          period_total += time.fixed_price_variation
+    def date_check(start_date, end_date)
+      if start_date < Date.today.strftime("%Y-%m-%d")
+        flash[:danger] = "La date d'arrivée ne peut précéder la date d'aujourd'hui."
+        redirect_to :back
+      elsif end_date <= Date.today.strftime("%Y-%m-%d")
+        flash[:danger] = "La date de départ ne peut précéder la date de demain."
+        redirect_to :back
+      end
+    end
+
+  def guests_check(room_clicked, guests)
+    if guests.present?
+      if guests.to_f < 1
+        flash[:danger] = "Personnes : Veuillez entrer une valeur strictement positive."
+        redirect_to :back and return
+      end
+      room_qty_asked = (params[:res][:guests].to_i/2.0).ceil
+
+      if @rooms.count < room_qty_asked && room_clicked == false
+        flash.now[:danger] = "Nombre de chambres insuffisant à la quantité de personnes insérée (max. 2 par chambre)"
+      elsif @rooms.count+1 < room_qty_asked && room_clicked == true
+        flash.now[:danger] = "Manque de chambres: Le nombre de chambres a été ajusté au maximum disponible."
+        room_qty_asked = @rooms.count+1
+      else
+        flash.now[:success] = "Nombre de chambres suffisant à la quantité de personnes insérée (max. 2 par chambre)"
+      end
+
+      if room_qty_asked > 1 && room_clicked == true
+        (0..room_qty_asked-2).each do |i|
+          @rooms_to_reserve[i+1] = @rooms[i][:number]
         end
       end
-      return period_total
     end
+  end
 end

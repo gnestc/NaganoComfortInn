@@ -13,10 +13,26 @@
       Arrivée le #{@invoice.reservation.start_date}
       Départ le #{@invoice.reservation.end_date}
       Chambres
-      - roomList = ReservationsRoom.rooms_in_reservation(@invoice.reservation_id)
-      - roomList.each do |room|
+      - room_list = ReservationsRoom.rooms_in_reservation(@invoice.reservation_id)
+      - room_list.each do |room|
         = room.room.number
       %br/
+      Charges associées:
+      - room_list.each do |detail|
+        = detail.room.view.view_desc
+        = detail.room.view.view_fixed_price
+        = detail.room.room_type.type_desc
+        = detail.room.room_type.type_fixed_price
+
+      - day_details = InvoiceDetail.details_in_invoice(@invoice.id, "day")
+      - day_details.each do |detail|
+        = detail.by_day_of_week_price.day_desc
+        = detail.by_day_of_week_price.fixed_price_variation
+
+      - time_details = InvoiceDetail.details_in_invoice(@invoice.id, "time")
+      - time_details.each do |detail|
+        = detail.by_time_of_year_price.time_desc
+        = detail.by_time_of_year_price.fixed_price_variation
     %p
       Sous-total: #{@invoice.subtotal}
       %br/

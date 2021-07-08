@@ -6,11 +6,11 @@
     %p
       = f.label :start_date, "Arrivée : "
       %br/
-      = f.text_field :start_date, value: params[:start_date], readonly: true
+      = f.text_field :start_date, value: params[:res][:start_date], readonly: true
     %p
       = f.label :end_date, "Départ : "
       %br/
-      = f.text_field :end_date, value: params[:end_date], readonly: true
+      = f.text_field :end_date, value: params[:res][:end_date], readonly: true
     %p
       = f.label :view_id, "Vue sélectionnée : "
       %br/
@@ -28,7 +28,7 @@
       Maximum de 2 personnes par chambre
     %p
       Sous-total :
-      = params[:price].to_f*@rooms_to_reserve.count
+      = params[:res][:price].to_f*@rooms_to_reserve.count
     %p
       = f.label :customer_id, "Entrez le courriel lié à votre compte"
       %br/
