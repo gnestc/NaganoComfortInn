@@ -6,12 +6,22 @@ Client: <%= @invoice.customer.first_name %> <%= @invoice.customer.last_name %> <
 Réservation: <%= @invoice.reservation.id %>
 Arrivée le <%= @invoice.reservation.start_date %>
 Départ le <%= @invoice.reservation.end_date %>
+
 Chambres
-<% roomList = ReservationsRoom.rooms_in_reservation(@invoice.reservation_id) %>
-<% roomList.each do |room| %>
+<% room_list = ReservationsRoom.rooms_in_reservation(@invoice.reservation_id) %>
+<% room_list.each do |room| %>
   <%= room.room.number %>
 <% end %>
-Sous-total: <%= @invoice.subtotal %>
+
+Charges associées:
+<% room_list.each do |detail| %>
+  <%= detail.room.view.view_desc %>
+  <%= detail.room.view.view_fixed_price %>
+  <%= detail.room.room_type.type_desc %>
+  <%= detail.room.room_type.type_fixed_price %>
+<% end %>
+
+Sous-total <%= @invoice.subtotal %>
 
 Merci de faire confiance aux hôtels Nagano Comfort Inn
 Au plaisir de vous voir!
