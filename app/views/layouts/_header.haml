@@ -23,7 +23,7 @@
           = link_to "Service aux chambres", admin_room_services_path, class: "dropdown-item"
           .dropdown-divider
           = link_to "Rapports journaliers", admin_reports_path, class: "dropdown-item"
-    %form.form-inline.my-2.my-lg-0{ action: results_path, method: 'get', name: 'res' }
+    %form.form-inline.my-2.my-lg-0{ action: results_path, method: 'post', name: 'res' }
       %div.date-container
         %input.datepicker{"aria-label" => "Search", name: "res[start_date]", :placeholder => "Arrivée", :type => "search"}/
       %div.date-container

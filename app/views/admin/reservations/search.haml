@@ -1,6 +1,6 @@
 %div.jumbotron
   %h1.display-4 Recherche par date
-  = form_for :res, method: 'get', url: results_path do |f|
+  = form_for :res, method: 'post', url: results_path do |f|
     %p
       = f.label :start_date, "Arrivée"
       %br/

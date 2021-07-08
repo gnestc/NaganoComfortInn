@@ -21,6 +21,11 @@ class PagesController < ApplicationController
         .by_view(params[:res][:view_id]).by_type(params[:res][:room_type_id])
 
     guests_check(false, params[:res][:guests])
+    respond_to do |format|
+      format.html
+      format.json
+      format.js { render layout: false, :locals => {:rooms => @rooms, :price_by_period => @price_by_period} }
+    end
   end
 
   def confirmation

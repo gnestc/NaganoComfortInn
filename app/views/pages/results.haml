@@ -1,7 +1,7 @@
 %h2 Résultats
 
 %nav.navbar.navbar-light.bg-light
-  = form_for :res, method: 'get', :html => {:class => 'form-inline'}, url: results_path do |f|
+  = form_for :res, method: 'post', :html => {:class => 'form-inline'}, remote: true, url: results_path do |f|
     %div.bar-element
       = f.label :start_date, "Arrivée"
     %div.bar-element
@@ -30,29 +30,5 @@
     %div.bar-element
       = f.submit "Rechercher", :html => {:class => 'btn.btn-outline-success.my-2.my-sm-0'}
 %p
-  - @rooms.each do |r|
-    .card.flex-row
-      .card-header.border-0
-        = image_tag 'Room101.jpg', class: 'img-room'
-      .card-block.px-2
-        .card-body
-          %h5.card-title
-            =r.room_type.type_desc
-          %p.card-text
-            %div{:class => r.is_available ? 'available' : 'booked'}
-              =r.is_available ? "Disponible" : "Non disponible"
-        %ul.list-group.list-group-flush
-          %li.list-group-item
-            =r.number
-          %li.list-group-item
-            =r.view.view_desc
-          %li.list-group-item
-            %div.price
-              - price = @price_by_period + r.room_type.type_fixed_price + r.view.view_fixed_price
-              = price
-        .card-body
-          = link_to "Réserver", confirmation_path(res: {:room_id => r.id, :start_date => params[:res][:start_date],
-          :end_date => params[:res][:end_date], :guests => params[:res][:guests],
-          :view_id => params[:res][:view_id], :room_type_id => params[:res][:room_type_id], :price => price}),
-          class: "card-link", method: :get
-          %a.card-link{:href => "#"} Détails
+  %div#results
+    = render partial: 'rooms', locals: { rooms: @rooms, price_by_period: @price_by_period}
